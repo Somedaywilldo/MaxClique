@@ -955,7 +955,7 @@ int main()
 			
 			select();
 
-//			disaster(iter);
+			//disaster(iter);
 			//select_wheel();
 			//print_time();
 

@@ -56,7 +56,6 @@ double p_survive;
 double one_bit_rate;
 double connect_rate;
 double disaster_rate;
-int disaster_period;
 
 /*
 void find_clique_BF(int x)
@@ -654,7 +653,7 @@ void read_data(int T)
 
 
 	string data_name="frb100-40";
-	string root_dir="/Users/mac/Desktop/MaxClique/data/";
+	string root_dir="data/";
 	string file_name;
 
 	memset(mat,0,sizeof(mat));
@@ -726,13 +725,13 @@ void set_const()
 	connect_rate=0.95; //应该动态调整
 	*/
 	//要保证diffent kind rate 在0.9左右，mutate不能太大，cross-over=n*n/2最佳
-	max_group_size=800;
+	max_group_size=400;
 
 	max_clique_size=100;
 	//init_group_size=100;
 	//one_bit_num_min=floor(0.7*max_clique_size);
 	//one_bit_num_max=floor(0.7*max_clique_size);
-	cross_over_pair=5000;
+	cross_over_pair=1500;
 	//cross_over_rate=0.01
 	//cross_over_rate=0.2; //23代24个
 	//cross_over_rate=0.4;
@@ -748,9 +747,6 @@ void set_const()
 	one_bit_rate=0.5;
 
 	connect_rate=0.999; //应该动态调整
-
-	disaster_rate=0.5;
-	disaster_period=100;
 
 }
 
@@ -776,13 +772,13 @@ void set_const_iter(int x)
 	connect_rate=0.95; //应该动态调整
 	*/
 	//要保证diffent kind rate 在0.9左右，mutate不能太大，cross-over=n*n/2最佳
-	max_group_size=500;
+	max_group_size=100;
 
 	max_clique_size=100;
 	//init_group_size=100;
 	//one_bit_num_min=floor(0.7*max_clique_size);
 	//one_bit_num_max=floor(0.7*max_clique_size);
-	cross_over_pair=2000;
+	cross_over_pair=1000;
 	//cross_over_rate=0.01
 	//cross_over_rate=0.2; //23代24个
 	//cross_over_rate=0.4;
@@ -790,7 +786,7 @@ void set_const_iter(int x)
 	
 	//cross_over_rate
 	p_survive=0.9;
-	max_iterate=10000;
+	max_iterate=500000;
 
 	double k,b;
 	
@@ -812,32 +808,12 @@ void set_const_iter(int x)
 
 	connect_rate=0.999; //应该动态调整
 
-	disaster_rate=0.5;
-	disaster_period=100;
+	disaster_rate=0.3;
 }
 
-
-int t_dis[MAXN];
-int t_dis_cnt;
-
-void disaster(int x)
+void disaster()
 {
-	if(x%disaster_period!=0) return;
-	
-	int i,j;
 
-	for(i=1;i<=floor(now_group_size*disaster_rate);i++)//去除1/3人口，用重新生成的方式淘汰得分低的。
-	{
-		int op1=rand()%now_group_size+1;
-		a[op1].reset();
-		for(j=1;j<=one_bit_rate*max_clique_size;j++)
-		{
-			int op2=rand()%n+1;
-			a[i].set(op2);// set bit_pos j as 1 
-		}
-		//cout<<a[i]<<endl;
-	}
-	cout<<"Disaster happended!"<<endl;
 }
 
 void print_time()
@@ -954,8 +930,6 @@ int main()
 			//print_time();
 			
 			select();
-
-//			disaster(iter);
 			//select_wheel();
 			//print_time();
 

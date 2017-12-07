@@ -653,7 +653,7 @@ void read_data(int T)
 
 
 	string data_name="frb100-40";
-	string root_dir="/Users/mac/Desktop/MaxClique/data/";
+	string root_dir="data/";
 	string file_name;
 
 	memset(mat,0,sizeof(mat));
@@ -725,13 +725,13 @@ void set_const()
 	connect_rate=0.95; //应该动态调整
 	*/
 	//要保证diffent kind rate 在0.9左右，mutate不能太大，cross-over=n*n/2最佳
-	max_group_size=800;
+	max_group_size=400;
 
 	max_clique_size=100;
 	//init_group_size=100;
 	//one_bit_num_min=floor(0.7*max_clique_size);
 	//one_bit_num_max=floor(0.7*max_clique_size);
-	cross_over_pair=5000;
+	cross_over_pair=1500;
 	//cross_over_rate=0.01
 	//cross_over_rate=0.2; //23代24个
 	//cross_over_rate=0.4;
@@ -739,7 +739,7 @@ void set_const()
 	cross_over_rate=0.01/3;//90代24个，最大25个
 	//cross_over_rate
 	p_survive=0.9;
-	max_iterate=10000;
+	max_iterate=1000000;
 
 	//mutate_rate=3e-1;
 	//mutate_p=solve_mutate_p(mutate_rate);
@@ -772,13 +772,13 @@ void set_const_iter(int x)
 	connect_rate=0.95; //应该动态调整
 	*/
 	//要保证diffent kind rate 在0.9左右，mutate不能太大，cross-over=n*n/2最佳
-	max_group_size=500;
+	max_group_size=200;
 
 	max_clique_size=100;
 	//init_group_size=100;
 	//one_bit_num_min=floor(0.7*max_clique_size);
 	//one_bit_num_max=floor(0.7*max_clique_size);
-	cross_over_pair=1500;
+	cross_over_pair=1000;
 	//cross_over_rate=0.01
 	//cross_over_rate=0.2; //23代24个
 	//cross_over_rate=0.4;
